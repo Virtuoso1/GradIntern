@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ internship.title }}</title>
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">GradIntern</div>
+  </header>
+
+  <main class="detail-page">
+    <h2>Applicants for "{{ internship.title }}</h2>
+    {% if applications %}
+  <ul>
+    {% for app in applications %}
+      <li>
+        <strong>{{ app.student.name }}</strong> — {{ app.student.email }}<br>
+        <em>Applied on:</em> {{ app.applied_at }}<br>
+        <em>Status:</em> {{ app.application_status }}<br>
+        <em>Skills:</em> {{ app.student.skill_description }}<br>
+        <a href="{% url 'recruiter:view_applicant_detail' app.id %}">View Details</a>        
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No applicants yet.</p>
+{% endif %}
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 GradIntern. All rights reserved.</p>
+  </footer>
+</body>
+</html>

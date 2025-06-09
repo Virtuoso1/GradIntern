@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internships - GradIntern</title>
+  <link rel="stylesheet" href="{% static 'style.css'%}" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">GradIntern</div>
+  </header>
+
+  <main class="listings-page">
+  <a href="{% url 'student:student_profile' %}">My Profile</a>
+    <h2>Available Internships</h2>
+    {% if internships %}
+    <div class="card-grid">
+      {% for internship in internships %}
+      <div class="card">
+         <h4>{{ internship.title }}</h4>
+            <p><strong>Company:</strong> {{ internship.recruiter.company_name }}</p>
+            <p><strong>Location:</strong> {{ internship.location }}</p>
+            <p><strong>Stipend:</strong> Ksh {{ internship.stipend }}</p>
+        <br> <a href="{% url 'student:internship_detail' internship.id %}" class="btn">View Details</a>
+      </div>
+      {% endfor%}
+    </div>
+    {% else %}
+    <p>No internships available right now</p>
+    {% endif %}
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 GradIntern. All rights reserved.</p>
+  </footer>
+</body>
+</html>

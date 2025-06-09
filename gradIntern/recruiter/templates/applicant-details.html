@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applicant Detail - GradIntern</title>
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">GradIntern</div>
+  </header>
+  <main class="detail-page">
+    <h2>Applicant: {{ student.name }}</h2>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+  <p><strong>Phone:</strong> {{ student.phone_no }}</p>
+  <p><strong>University:</strong> {{ student.university }}</p>
+  <p><strong>Skills:</strong> {{ student.skill_description }}</p>
+  <p><strong>Location:</strong> {{ student.location }}</p>
+  <strong>CV:</strong> <a href="{{ student.cv_url }}" target="_blank">Download CV</a>
+
+  <form method="POST">
+  {% csrf_token %}
+  <button type="submit" name="action" value="Accepted" class="btn btn-success">Accept</button>
+  <button type="submit" name="action" value="Rejected" class="btn btn-danger">Reject</button>
+</form>
+
+<a href="{% url 'recruiter:view_applicants' application.internship.id %}">← Back to Applicants</a>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 GradIntern. All rights reserved.</p>
+  </footer>
+</body>
+</html>

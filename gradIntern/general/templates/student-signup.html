@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Sign Up - GradIntern</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><a href="{% url 'general'%}">GradIntern</a></div>
+  </header>
+
+  <section class="form-section">
+    <h2>Create Your Student Account</h2>
+    <form class="form" method="post">
+      {% csrf_token %}
+      <label for="{{ form.name.id_for_label }}">Name:</label>
+      {{ form.name }}
+      <label for="{{ form.email.id_for_label }}">Email:</label>
+      {{ form.email }}
+      <label for="{{ form.password.id_for_label }}">Password:</label>
+      {{ form.password }}
+      <label for="{{ form.location.id_for_label }}">Location:</label>
+      {{ form.location }}
+      <button type="submit" class="btn btn-secondary">Sign Up</button>
+      <p>Already have an account? <a href="{% url 'student_login' %}">Log in here</a></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 GradIntern. All rights reserved.</p>
+  </footer>
+</body>
+</html>

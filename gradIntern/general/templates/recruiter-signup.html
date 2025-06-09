@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruiter Signup - GradIntern</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><a href="{% url 'general'%}">GradIntern</a></div>
+  </header>
+
+  <section class="form-section">
+    <h2>Recruiter Sign Up</h2>
+    <form class="form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+      <button type="submit" class="btn btn-secondary">Create Account</button>
+      <p>Already have an account? <a href="{% url 'recruiter_login' %}">Log in here</a></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 GradIntern. All rights reserved.</p>
+  </footer>
+</body>
+</html>
